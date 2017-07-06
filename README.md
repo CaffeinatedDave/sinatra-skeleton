@@ -29,7 +29,7 @@ Purchase something [here](https://www.apple.com/uk/mac/) and follow steps above.
 Running Locally
 ---------------
 
-Create a `.env` file in this directory, with the following contents:
+Create a `.env` file in this directory, with the following contents:  
 ```
 DATABASE_URL="postgres://skeleton@localhost:5432/skeleton"
 DATABASE_PASS="skeleton"
@@ -45,6 +45,8 @@ Edit your /etc/hosts file to contain the following line (you'll need to use sudo
 Run with
 `rackup`
 
+visit `http://local.testing.com:9292`
+
 
 ####Routes
 
@@ -57,7 +59,10 @@ Heroku Deploy
 -------------
 
 Install the [Heroku Tookbelt](https://devcenter.heroku.com/articles/heroku-cli)  
-  - Run with `heroku local`
+Follow the steps below  
+  - `heroku create`
+  - `git push heroku master`
+  - Done!
 
 
 **TODO**
