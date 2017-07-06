@@ -7,8 +7,8 @@ require 'sinatra/base'
 require 'sinatra/flash'
 
 require_relative 'routes/init'
-# require_relative 'models/init'
-# require_relative 'helpers/init'
+require_relative 'models/init'
+require_relative 'helpers/init'
 
 Dotenv.load
 
@@ -47,5 +47,5 @@ class Skeleton < Sinatra::Base
     # Before each page load stuff
   end
 
-  
+
 end

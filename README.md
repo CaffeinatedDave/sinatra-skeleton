@@ -23,7 +23,7 @@ Install Postgres via [postgres.app](https://postgresapp.com/)
 
 **Windows / Linux:**  
 Purchase something [here](https://www.apple.com/uk/mac/) and follow steps above.  
-(More seriously, I'd love a PR with details here?)
+(More seriously, I'd love a PR with details)
 
 
 Running Locally
@@ -64,5 +64,12 @@ Follow the steps below
   - `git push heroku master`
   - Done!
 
-
 **TODO**
+--------
+- Detail how to set up heroku database
+- erb detail / examples
+- DB setup / examples / usage
+- flash messages
+- GET/POST routes
+- HTTP status codes meanings
+- README details in app for further reading
