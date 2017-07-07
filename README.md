@@ -72,4 +72,5 @@ Follow the steps below
 - flash messages
 - GET/POST routes
 - HTTP status codes meanings
+- Puma
 - README details in app for further reading
