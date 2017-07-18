@@ -45,6 +45,7 @@ class Skeleton < Sinatra::Base
 
   before do
     # Before each page load stuff
+    @title = "Sinatra Skeleton"
   end
 
 

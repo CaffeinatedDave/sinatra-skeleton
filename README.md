@@ -31,6 +31,8 @@ Running Locally
 
 Create a `.env` file in this directory, with the following contents:  
 ```
+PORT=9393
+
 DATABASE_URL="postgres://skeleton@localhost:5432/skeleton"
 DATABASE_PASS="skeleton"
 
@@ -42,17 +44,9 @@ COOKIE_SECRET=changeMe
 Edit your /etc/hosts file to contain the following line (you'll need to use sudo to write to this file):  
 `127.0.0.1   local.testing.com`
 
-Run with
-`rackup`
+Run with either `rackup -p 9393` (requires restart on each change), `shotgun` (automatically picks up changes without restarting the app) or `heroku local` (runs via Procfile, and runs as it will on heroku)
 
-visit `http://local.testing.com:9292`
-
-
-####Routes
-
-
-####Templates
-
+Visit `http://local.testing.com:9393` to continue learning
 
 
 Heroku Deploy
@@ -60,7 +54,7 @@ Heroku Deploy
 
 Install the [Heroku Tookbelt](https://devcenter.heroku.com/articles/heroku-cli)  
 Follow the steps below  
-  - `heroku create`
+  - `heroku create` (optional: `--region=eu` for a European server)
   - `git push heroku master`
   - Done!
 
@@ -72,5 +66,4 @@ Follow the steps below
 - flash messages
 - GET/POST routes
 - HTTP status codes meanings
-- Puma
 - README details in app for further reading
