@@ -1,16 +1,45 @@
+<!DOCTYPE html>
+<%
+  ####
+  # Layout.erb
+  #
+  # This file is the "wrapper" around which your erb templates are displayed.
+  #
+  # It should be kept as minimal as possible, loading in any scripts that you
+  # need on every page (like bootstrap in this example), and leaving your page
+  # scripts to be loaded by individual templates.
+  #
+  # You can also create extra templates for things like menus, or the footer
+  # to keep this file a bit neater
+  #
+%>
 <html>
   <head>
+    <% # We use @title here, and it's set in server.rb %>
     <title><%= @title %></title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
+    <% # This is a link to bootstrap's CSS from a CDN - see the glossary of terms for more info  %>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
   </head>
   <body>
     <div id="container">
-      <%=yield%>
+      <%
+        # This is the same as the command in the .rb file, but here it knows
+        # that it's been called from within a template, so won't do the layout
+        # file again
+      %>
+      <%= erb :header %>
+
+      <% # yield outputs whatever we told it to in the erb command %>
+      <%= yield %>
+
+      <% # Just like header above - this plays the footer file %>
+      <%= erb :footer %>
     </div>
 
+    <% # More uses of a CDN here, this time for javascript files - they go at the end to help loading times %>
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha256-k2WSCIexGzOj3Euiig+TlR8gA0EmPjuc79OEeY5L45g=" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
   </body>
