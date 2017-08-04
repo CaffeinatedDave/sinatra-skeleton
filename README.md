@@ -1,6 +1,8 @@
 Skeleton Sinatra app
 ====================
 
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/1a7d214d7d6643fea801dcfa17afb1d0)](https://www.codacy.com/app/CaffeinatedDave/sinatra-skeleton?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=CaffeinatedDave/sinatra-skeleton&amp;utm_campaign=Badge_Grade)
+
 Setup
 -----
 
