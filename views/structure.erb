@@ -1,0 +1,69 @@
+<h2>Project Structure</h2>
+
+<p>
+  Your sinatra app is currently structured as follows (though this is personal taste - you can call things whatever you like, as long as you update all the references to it):
+</p>
+
+<pre>
+  <strong>sinatra-skeleton</strong>
+  |-> <strong>db</strong>
+  | |-> <a href="#db-migrate"><strong>migrate</strong></a>
+  | |-> <em>schema.rb</em>
+  |-> <a href="#helpers"><strong>helpers</strong></a>
+  | |-> <em>init.rb</em>
+  |-> <a href="#models"><strong>models</strong></a>
+  | |-> <em>init.rb</em>
+  |-> <a href="#public"><strong>public</strong></a>
+  | |-> <strong>css</strong>
+  | |-> <strong>js</strong>
+  |-> <a href="#routes"><strong>routes</strong></a>
+  | |-> <em>init.rb</em>
+  | |-> <em>other .rb files - split by page type, eg home, module etc</em>
+  |-> <a href="#test"><strong>test</strong></a>
+  | |-> <strong>acceptance</strong>
+  | |-> <strong>models</strong>
+  | |-> <strong>routes</strong>
+  |-> <a href="#views"><strong>views</strong></a>
+  | |-> <em>Lots of .erb files</em>
+</pre>
+
+<div id="db-migrate">
+  <h3>DB Migrations</h3>
+  <p> This is where your database structure will live. You'll have two main parts to this section: a schema.rb file, and a migrations folder </p>
+  <p> The schema.rb file is the current live state of a database, and you'll be able to load this from the command line with `rake db:schema:load`</p>
+  <p> The migrations folder is where you'll add your own tables, modify existing tables, and generally update an existing database. You can find more information about how to do this under <a href="/modules/rake"> Rake [hard] </a></p>
+</div>
+
+<div id="helpers">
+  <h3>Helpers</h3>
+  <p> This section is where code that you generally use (things like mapping between a user ID and an actual account object) can live, without being tied into a specific `route`</p>
+</div>
+
+<div id="models">
+  <h3>Models</h3>
+  <p> Any tables you have in your database probably will also need a model so you can create and look up data </p>
+</div>
+
+<div id="public">
+  <h3>Public</h3>
+  <p> This is where your assets live. Things like css and js get their own folder, so you can find them easier.</p>
+  <p> In general, anything that isn't server-side code like ruby will live here; images, fonts, stylesheets and the like</p>
+</div>
+
+<div id="routes">
+  <h3>Routes</h3>
+  <p> This is the main map of your website. The routes are the different paths that your users will end up at, and you want to respond to</p>
+  <p> For example, right now you are at `/modules/structure` - so there is a specific route for this address. You can also do routes that take arguements, and use these to generate dynamic content. Examples of this would be a blog ID or a specific command</p>
+</div>
+
+<div id="test">
+  <h3>Test</h3>
+
+  <em>Testing detail coming soon once I understand it myself...</em>
+</div>
+
+<div id="views">
+  <h3>Views</h3>
+  <p>Views are the templates that define how the site looks. In this case they're using "embedded ruby templates", or .erb files</p>
+  <p>They are described more over at <a href="/modules/erb"> erb [Medium] </a>
+</div>

@@ -1,5 +1,5 @@
 require "rubygems"
-require "sinatra"
+require "sinatra/base"
 
 require File.expand_path '../server.rb', __FILE__
 

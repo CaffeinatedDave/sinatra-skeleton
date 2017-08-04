@@ -1,4 +1,6 @@
 require 'rake/testtask'
+require './server'
+require "sinatra/activerecord/rake"
 require 'yard'
 
 task :default => [:'']
@@ -21,7 +23,7 @@ namespace :test do
   task :routes do
     ruby "test/routes/*_test.rb"
   end
-  
+
   desc "Run acceptance tests"
   task :acceptance do
     ruby "test/acceptance/*_test.rb"
@@ -32,4 +34,3 @@ YARD::Rake::YardocTask.new do |t|
   t.files   = ['app.rb', '**/helpers/*.rb', '**/routes/*.rb', '**/models/*.rb']
   t.options = ['--protected', '--private']
 end
-

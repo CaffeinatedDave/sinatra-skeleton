@@ -9,6 +9,7 @@ gem 'rake', '12.0.0'
 gem 'sinatra-flash', '0.3.0'
 gem 'sinatra', '2.0.0'
 gem 'sinatra-activerecord', '2.0.13'
+gem 'sinatra-contrib', '2.0.0'
 gem 'thin', '1.7.1'
 
 group :development do
