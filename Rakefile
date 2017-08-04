@@ -5,7 +5,7 @@ task :default => [:'']
 
 desc "Run all tests"
 task :'' do
-  test_task = Rake::TestTask.new("alltests") do |t|
+  Rake::TestTask.new("alltests") do |t|
     t.test_files = Dir.glob(File.join("test", "**", "*_test.rb"))
   end
   task("alltests").execute
