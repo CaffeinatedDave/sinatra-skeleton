@@ -7,6 +7,9 @@ body>div.container {
   margin: auto;
 }
 
+ul {
+  list-style-type: none;
+}
 
 pre {
   width: 60%;

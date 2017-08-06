@@ -1,25 +1,10 @@
 class Skeleton < Sinatra::Base
-
   get '/' do
     erb :home
   end
 
-  # 'easy' modules
-  get '/modules/structure' do erb :structure end
-  get '/modules/html' do erb :html end
-  get '/modules/js' do erb :js end
-
-  # 'medium' modules
-  get '/modules/ruby' do erb :ruby end
-  get '/modules/erb' do erb :erb end
-  get '/modules/db' do erb :db end
-
-  # 'hard' modules
-  get '/modules/rake' do erb :rake end
-
-#  Commented out until flash has somewhere to run
-#  not_found do
-#    flash[:warning] = "File Not Found"
-#    redirect '/'
-#  end
+  not_found do
+    flash[:warning] = "File Not Found"
+    redirect "/"
+  end
 end

@@ -15,35 +15,43 @@
 %>
 <html>
   <head>
-    <% # We use @title here, and it's set in server.rb %>
-    <title><%= @title %></title>
+    <%# We use @title here, and it's set in server.rb (or overriden in other routes) %>
+    <title><%=@title%></title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <% # This is a link to bootstrap's CSS from a CDN - see the glossary of terms for more info  %>
+    <%# This is a link to some CSS from a CDN - see the glossary of terms for more info  %>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 
-    <% # And this one is a link to our own CSS file %>
+    <%# And this one is a link to our own CSS file %>
     <link rel="stylesheet" href="/css/skeleton.css">
   </head>
   <body>
-    <%
-      # This is the same as the command in the .rb file, but here it knows
-      # that it's been called from within a template, so won't do the layout
-      # file again
+    <%#
+      This is the same as the command in the .rb file, but here it knows
+      that it's been called from within a template, so won't do the layout
+      file again
     %>
     <%= erb :header %>
 
     <div class="container">
-      <% # yield outputs whatever we told it to in the erb command %>
+      <%# This section shows the "flash" messages. If there are none, it'll be invisible (but check the source code - the tags are still there!) %>
+      <div id="flash--aaaah">
+        <p class="bg-warning"><%= flash[:warning] %></p>
+        <p class="bg-info"><%= flash[:notice] %></p>
+        <p class="bg-success"><%= flash[:success] %></p>
+      </div>
+
+      <%# yield outputs whatever we told it to in the erb command %>
       <%= yield %>
 
-      <% # Just like header above - this plays the footer file %>
+      <%# Just like header above - this plays the footer file %>
       <%= erb :footer %>
     </div>
 
-    <% # More uses of a CDN here, this time for javascript files - they go at the end to help loading times %>
+    <%# More uses of a CDN here, this time for javascript files - they go at the end to help loading times %>
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha256-k2WSCIexGzOj3Euiig+TlR8gA0EmPjuc79OEeY5L45g=" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <%=@extraScripts%>
   </body>
 </html>
