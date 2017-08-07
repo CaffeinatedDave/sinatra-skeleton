@@ -13,7 +13,7 @@ function createPassword() {
     items = items.concat($(this).val().split(""));
   });
 
-  var newPassword = "P4ssW0rd!"
+  var newPassword = "P4ssW0rd!";
 
   if (items.length > 0) {
     newPassword = pickRandom(items, parseInt($("#length").val()));
