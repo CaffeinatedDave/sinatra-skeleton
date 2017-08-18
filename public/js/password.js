@@ -6,8 +6,10 @@ function pickRandom(array, length) {
   return toReturn;
 }
 
+
 function createPassword() {
 
+  // Initial
   var items = [];
   $(".charOption:checked").each(function(i) {
     items = items.concat($(this).val().split(""));

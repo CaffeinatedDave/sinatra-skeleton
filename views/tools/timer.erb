@@ -1,0 +1,15 @@
+<div>
+  <h2>Countdown Timer</h2>
+
+  <div class="timerPanel">
+    <span id="timeLeft">00:00.0</span>
+    <span class="glyphicon glyphicon-play" id="playIcon" aria-hidden="true"></span>
+    <span class="glyphicon glyphicon-stop" id="stopIcon" aria-hidden="true"></span>
+  </div>
+
+  <input type="text" id="timer"/>
+  <button onclick="startTimer()"><span class="glyphicon glyphicon-play"></span></button>
+  <button onclick="stopTimer()"><span class="glyphicon glyphicon-stop"></span></button>
+</div>
+
+<% @extraScripts = '<script src="/js/timer.js"></script>' %>

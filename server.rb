@@ -32,6 +32,12 @@ class Skeleton < Sinatra::Base
 
   set :app_file, __FILE__
 
+  helpers do
+    def h(text)
+      Rack::Utils.escape_html(text)
+    end
+  end
+
   use Rack::Session::Cookie, :key => ENV['COOKIE_NAME'],
                              :domain => ENV['DOMAIN'],
                              :path => '/',

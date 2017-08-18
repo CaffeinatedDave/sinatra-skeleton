@@ -15,3 +15,29 @@ pre {
   width: 60%;
   margin: auto;
 }
+pre.demoPane {
+  width: 95%;
+  margin: auto;
+}
+
+#toolCode {
+  clear: both;
+}
+.toggleCodeButton {
+  float: right;
+}
+.toggleCodeButtonHidden {
+  float: right;
+  display: none;
+}
+
+#timeLeft {
+  font-size: 10em;
+}
+#playIcon {
+  display: none;
+  color: green;
+}
+#stopIcon {
+  color: red;
+}

@@ -1,0 +1,19 @@
+<%= erb "tools/#{@tool}".to_sym %>
+
+<hr/>
+<span class="toggleCodeButton" style="display: none;"><a href="#" onclick="toggleToolCode();">Hide Code?</a></span>
+<span class="toggleCodeButton"><a href="#" onclick="toggleToolCode();">Show Code?</a></span>
+<div class="row" id="toolCode">
+  <div class="col-md-6">
+    <h4>HTML</h4>
+    <pre class="demoPane" id="htmlDemo">
+<%= h(erb "tools/#{@tool}".to_sym) %>
+    </pre>
+  </div>
+  <div class="col-md-6">
+    <h4>JS (with jQuery)</h4>
+    <pre class="demoPane" id="jsDemo">
+<%= @jsContent %>
+    </pre>
+  </div>
+</div>
