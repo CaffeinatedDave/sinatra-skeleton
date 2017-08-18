@@ -26,10 +26,6 @@ pre.demoPane {
 .toggleCodeButton {
   float: right;
 }
-.toggleCodeButtonHidden {
-  float: right;
-  display: none;
-}
 
 #fullTimerBar {
   width: 80%;

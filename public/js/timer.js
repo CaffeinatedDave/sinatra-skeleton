@@ -87,7 +87,7 @@ function startTimer() {
   }
 
   // count up the number of deci-seconds for ease of calculating
-  var deciSeconds = secondsDecimal + (seconds * 10) + (minutes * 600) + (hours * 36000)
+  var deciSeconds = secondsDecimal + (seconds * 10) + (minutes * 600) + (hours * 36000);
   window.startCounter = deciSeconds;
   continueTimer(deciSeconds);
 }
