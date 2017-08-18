@@ -1,76 +1,67 @@
-function makeTimeString(secondsDecimal, seconds, minutes, hours) {
-  // Default state is to not show the hours, so the empty string is used
-  var hoursString = "";
-  if (hours > 0) {
-    hoursString = hours + ":";
-  }
+function makeTimeString(deciSeconds) {
+  var d = "." + (deciSeconds % 10);
+  var seconds = parseInt(deciSeconds / 10);
 
-  var minutesString = "";
-  // Don't show the minutes unless there are some, or the hours are set
-  if (hoursString === "" && minutes > 0) {
-    minutesString = "" + minutes + ":"
-  } else if ((minutes > 0 && minutes < 10) || hoursString != "") {
-    // slightly more advanced code below: Start with an empty string, then "add"
-    // a 0 followed by the number (which is automatically changed to a string to
-    // match types), then take the last two characters.
-    //
-    // This means that 5 becomes 05, and 25 becomes 025, which is cut down to 25
-    // Forcing the display to always have two characters
-    minutesString = ("" + 0 + minutes).slice(-2) + ":";
-  }
+  var s = ("0" + seconds % 60).slice(-2);
+  var minutes = parseInt(seconds / 60);
 
-  var secondsString = "" + seconds;
-if (seconds < 10 && minutesString != "") {
-    secondsString = ("" + 0 + seconds).slice(-2);
-  }
-
-  // As above, but add the decimal point before it as well
-  var secondsDecimalString = "." + secondsDecimal;
+  var m = ("0" + minutes % 60).slice(-2) + ":";
+  var h = parseInt(minutes / 60) + ":";
 
   // Put each part together to make the actual time display
-  return hoursString + minutesString + secondsString + secondsDecimalString;
+  var timeString = h + m + s + d;
+
+  // Remove all the leading 0s and : from the timestring, so we don't show hours
+  // when we're down to 10 seconds
+  while (timeString.length > 3 && (timeString[0] === "0" || timeString[0] === ":")) {
+    timeString = timeString.slice(-1 * (timeString.length - 1));
+  }
+
+  return timeString;
 }
 
-function continueTimer(secondsDecimal, seconds, minutes, hours) {
-  if (secondsDecimal + seconds + minutes + hours === 0) {
+function stopTimer() {
+  // Clear the timeout and reset everything to 0s
+  clearTimeout(window.timerTimeout);
+  $("#pauseButton").css("color", "black");
+  $("#pauseButton").attr("disabled", true);
+  $("#timerBar").animate({width: "0"}, 1);
+}
+
+function continueTimer(deciSeconds) {
+  if (deciSeconds === 0) {
     $("#timeLeft").html("Time's up!");
     stopTimer();
   } else {
-    $("#timeLeft").html(makeTimeString(secondsDecimal, seconds, minutes, hours));
+    $("#timeLeft").html(makeTimeString(deciSeconds));
 
     // Each pass, we reduce this by 1
-    var newSecondsDecimal = secondsDecimal - 1;
+    var newDeciSeconds = window.lastTime = deciSeconds - 1;
 
-    var newSeconds = seconds;
-    // if this is less than 0, it means we've looped to the next second
-    if (newSecondsDecimal < 0) {
-      newSecondsDecimal = 9;
-      newSeconds -= 1;
-    }
-
-    var newMinutes = minutes;
-    // if this is less than 0, it means we've looped to the next minute
-    if (newSeconds < 0) {
-      newSeconds = 59;
-      newMinutes -= 1;
-    }
-
-    var newHours = hours;
-    // if this is less than 0, it means we've looped to the next hour
-    if (newMinutes < 0) {
-      newMinutes = 59;
-      newHours -= 1;
-    }
+    var percent = parseInt((1 - (newDeciSeconds / window.startCounter)) * 10000) / 100;
+    $("#timerBar").animate({width: "" + percent + "%"}, 1);
 
     // Create the timeout outside the scope of this function (so we can stop it)
-    window.timerTimeout = setTimeout(function(){continueTimer(newSecondsDecimal, newSeconds, newMinutes, newHours);}, 100);
+    window.timerTimeout = setTimeout(function(){continueTimer(newDeciSeconds);}, 100);
+  }
+}
+
+function pauseTimer() {
+  if (window.timerTimeout === null) {
+    $("#pauseButton").css("color", "black");
+    continueTimer(window.lastTime);
+  } else {
+    $("#pauseButton").css("color", "red");
+    clearTimeout(window.timerTimeout);
+    window.timerTimeout = null;
   }
 }
 
 function startTimer() {
   clearTimeout(window.timerTimeout); // Does nothing if not already set
-  $("#playIcon").show();
-  $("#stopIcon").hide();
+
+  $("#pauseButton").attr("disabled", false);
+  $("#timerBar").animate({width: "0%"}, 1);
 
   // Split XX:XX:XX into it's component parts
   var timeArr = $("#timer").val().split(":").reverse();
@@ -91,25 +82,12 @@ function startTimer() {
   if (isNaN(minutes)) {minutes = 0;}
   if (isNaN(hours)) {hours = 0;}
 
-  // Only allow 1 decimal place - remove everything after that:
-  while (secondsDecimal > 10) {secondsDecimal = parseInt(secondsDecimal/10)}
-
-  // Round up times that aren't correctly formatted (eg 300 minutes -> 5 hours)
-  while (seconds > 59) {
-    minutes += 1;
-    seconds -= 60;
-  }
-  while (minutes > 59) {
-    hours += 1;
-    minutes -= 60;
+  while (secondsDecimal > 10) {
+    secondsDecimal = parseInt(secondsDecimal / 10);
   }
 
-  continueTimer(secondsDecimal, seconds, minutes, hours);
-}
-
-function stopTimer() {
-  // Clear the timeout and stop the timer from counting down
-  clearTimeout(window.timerTimeout);
-  $("#stopIcon").show();
-  $("#playIcon").hide();
+  // count up the number of deci-seconds for ease of calculating
+  var deciSeconds = secondsDecimal + (seconds * 10) + (minutes * 600) + (hours * 36000)
+  window.startCounter = deciSeconds;
+  continueTimer(deciSeconds);
 }

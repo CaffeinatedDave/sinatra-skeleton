@@ -31,13 +31,15 @@ pre.demoPane {
   display: none;
 }
 
+#fullTimerBar {
+  width: 80%;
+  margin: auto;
+  margin-bottom: 10px;
+}
+#timerTool {
+  width:100%;
+  text-align: center;
+}
 #timeLeft {
   font-size: 10em;
-}
-#playIcon {
-  display: none;
-  color: green;
-}
-#stopIcon {
-  color: red;
 }
