@@ -11,9 +11,9 @@ gem 'sinatra', '2.0.0'
 gem 'sinatra-activerecord', '2.0.13'
 gem 'sinatra-contrib', '2.0.0'
 gem 'thin', '1.7.1'
-gem 'shotgun', '0.9.2'
 
 group :development do
+  gem 'shotgun', '0.9.2'
   gem 'yard', '0.9.9'
 end
 
